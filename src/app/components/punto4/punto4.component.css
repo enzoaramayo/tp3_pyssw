@@ -1,0 +1,10 @@
+.card-text {
+  border-color: black;
+  border: 1px;
+  border-style: solid;
+}
+
+.horizontal {
+  display: flex;
+  justify-content: space-between;
+}

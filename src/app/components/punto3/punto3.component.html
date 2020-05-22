@@ -1,0 +1,59 @@
+<form #formregistro="ngForm">
+  <div class="form-group">
+    <label for="dnipasajero">DNI</label>
+    <input type="text" class="form-control" id="dnipasajero" name="dnipasajero" placeholder="ingrese DNI" required
+      minlength="7" [(ngModel)]="pasaje.dniPasajero" #dnipasajero="ngModel" />
+    <div *ngIf="dnipasajero.invalid && (dnipasajero.dirty || dnipasajero.touched)" class="alert alert-danger">
+      <div *ngIf="dnipasajero.errors.required">
+        DNI es campo requerido
+      </div>
+      <div *ngIf="dnipasajero.errors.minlength">
+        DNI debe ser un valor mayor de 8 caracteres
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="precio">Precio</label>
+    <input type="number" class="form-control" id="precio" name="precio" placeholder="ingrese valor del pasaje"
+      [(ngModel)]="pasaje.precioPasaje" />
+  </div>
+  <div class="form-group">
+    <label for="categoria">Categor&iacute;a</label>
+    <select name="categoria" id="categoria" class="form-control" [(ngModel)]="pasaje.categoriaPasajero"
+      (change)='calcularDescuento()'>
+      <option value="m">Menor</option>
+      <option value="a">Adulto</option>
+      <option value="j">Jubilado</option>
+      <option value="s" selected>Seleccione ...</option>
+    </select>
+  </div>
+  <div class="text-danger" *ngIf="show">Valor Total: ${{precioFinal}}</div>
+  <button type="button" class="btn btn-primary" (click)="guardarVenta()"
+    [disabled]="!formregistro.form.valid">Enviar</button>
+  <button type="button" class="btn btn-primary" (click)="limpiar()">Limpiar</button>
+
+</form>
+
+<div class="table-responsive">
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">DNI</th>
+        <th scope="col">IMPORTE</th>
+        <th scope="col">CATEGORIA</th>
+        <th scope="col">FECHA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pasaje of ventas">
+        <th scope="row">{{pasaje.dniPasajero}}</th>
+        <td>{{pasaje.precioPasaje}}</td>
+        <td>{{pasaje.categoriaPasajero}}</td>
+        <td>{{pasaje.fechaCompra | date:'dd/MM/yyyy'}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <label for=""> {{resumen}}</label>
+</div>

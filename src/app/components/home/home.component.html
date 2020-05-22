@@ -1,0 +1,61 @@
+<div class="row">
+  <form class="col-md-10 offset-1" method="post" action="">
+    <h2 class="text-center"> GESTION DE PUNTOS DE INTERES </h2>
+    <div class="form-group row">
+      <label for="idnombre" class="col-md-4">Nombre</label>
+      <input id="idnombre" class="form-control form-control-sm col-md-8" type="text" name="idnombre"
+        [(ngModel)]="homeInteres.nombre" /> {{homeInteres.nombre}}
+    </div>
+    <div class="form-group row">
+      <label for="iddescripcion" class="col-md-4">Descripcion</label>
+      <input id="iddescripcion" class="form-control form-control-sm col-md-8" type="text" name="iddescripcion"
+        [(ngModel)]="homeInteres.descripcion" /> {{homeInteres.descripcion}}
+    </div>
+    <div class="form-group row">
+      <label for="idlatitud" class="col-md-4">Latitud</label>
+      <input id="idlatitud" class="form-control form-control-sm col-md-8" type="number" name="idlatitud"
+        [(ngModel)]="homeInteres.latitud" (ngModelChange)="actualizarUrl()" /> {{homeInteres.latitud}}
+    </div>
+    <div class="form-group row">
+      <label for="idlongitud" class="col-md-4">Longitud</label>
+      <input id="idlongitud" class="form-control form-control-sm col-md-8" type="number" name="idlongitud"
+        [(ngModel)]="homeInteres.longitud" (ngModelChange)="actualizarUrl()" /> {{homeInteres.longitud}}
+    </div>
+    <div class="form-group row">
+      <label class="col-12">Test Url: {{urlTest}} <a [href]="urlTest"></a></label>
+      <label for="idurlmapa" class="col-md-4">Url Mapa</label>
+      <input id="idurlmapa" class="form-control form-control-sm col-md-8" type="url" name="idurlmapa"
+        [(ngModel)]="homeInteres.urlmapa" /> {{homeInteres.urlmapa}}
+    </div>
+    <div class="form-group text-center">
+      <button class="btn btn-secondary ml-2 mr-2" (click)="guardarPunto()"><i class="fas fa-save fal"></i>
+        Guardar</button>
+      <button class="btn btn-secondary ml-2 mr-2" (click)="limpiarPunto()"><i class="fas fa-brush"></i> Limpiar</button>
+    </div>
+  </form>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Latitud</th>
+        <th scope="col">Longitu</th>
+        <th scope="col">Url</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let punto of homesInteres">
+        <th scope="row">{{punto.nombre}}</th>
+        <td>{{punto.latitud}}</td>
+        <td>{{punto.longitud}}</td>
+        <td><a [href]="punto.urlmapa" class="btn btn-primary">Ir</a></td>
+        <td>
+          <button class="btn-primary" (click)="elegirPunto(homeInteres)">Seleccionar</button>
+          <button class="btn-primary" (click)="borrarPunto(homeInteres)">Borrar </button>
+          <button class="btn-primary" (click)="updatePunto()">Actualizar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
