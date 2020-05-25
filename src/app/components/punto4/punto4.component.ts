@@ -54,10 +54,11 @@ export class Punto4Component implements OnInit {
   }
 
   obtenerPalabra() {
-    this.vidas = 1;
+    this.vidas = 6;
     this.puntaje = 0;
     this.palabra = this.palabras.getPalabra();
     this.iniciar = true;
+    this.ganaste=false
     this.limpiar();
     this.cargarArregloDeLetras();
   }
@@ -110,7 +111,6 @@ export class Punto4Component implements OnInit {
 
     } else {
       this.contador++;
-      this.puntaje += 100;
       console.log("mas puntaje");
     }
     if (this.vidas < 1) {
@@ -122,7 +122,8 @@ export class Punto4Component implements OnInit {
   }
 
   renovarPalabra() {
-    if (this.puntaje >= 900) {
+    this.puntaje += 100;
+    if (this.puntaje > 300) {
       this.ganaste = true;
     } else {
       this.contador = 0;
