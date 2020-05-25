@@ -15,6 +15,7 @@ export class Punto4Component implements OnInit {
   palabra: Palabra;
 
   perdiste: boolean;
+  ganaste: boolean;
   activo: any
 
   iniciar: boolean;
@@ -34,14 +35,18 @@ export class Punto4Component implements OnInit {
   caracter10: string;
   caracter11: string;
 
+  contador: number;
+
   constructor(private palabras: MisPalabrasService) {
     this.vidas = 0;
     this.puntaje = 0;
+    this.ganaste = false;
     this.perdiste = false;
     this.iniciar = false;
     this.palabra = new Palabra();
     this.palabra.urlImagen = "assets/adivina.png";
     this.limpiar();
+    this.contador = 0;
   }
 
   ngOnInit(): void {
@@ -49,10 +54,11 @@ export class Punto4Component implements OnInit {
   }
 
   obtenerPalabra() {
-    this.vidas = 6;
+    this.vidas = 1;
     this.puntaje = 0;
     this.palabra = this.palabras.getPalabra();
     this.iniciar = true;
+    this.limpiar();
     this.cargarArregloDeLetras();
   }
 
@@ -93,10 +99,38 @@ export class Punto4Component implements OnInit {
     this.caracter11 = null;
   }
 
-  controlar(){
+  controlar() {
     console.log("probando probando");
   }
 
+  descontarvidas(primera: string, segunda: string) {
+    if (primera != segunda) {
+      this.vidas--;
+      console.log("menos vidas");
+
+    } else {
+      this.contador++;
+      this.puntaje += 100;
+      console.log("mas puntaje");
+    }
+    if (this.vidas < 1) {
+      this.perdiste = true;
+    }
+    if (this.contador == this.crossword.length) {
+      this.renovarPalabra();
+    }
+  }
+
+  renovarPalabra() {
+    if (this.puntaje >= 900) {
+      this.ganaste = true;
+    } else {
+      this.contador = 0;
+      this.palabra = this.palabras.getPalabra();
+      this.cargarArregloDeLetras();
+      this.limpiar();
+    }
+  }
 
   dibujarPalabra(palabra: string): void {
     var div = document.getElementById('div_palabra')

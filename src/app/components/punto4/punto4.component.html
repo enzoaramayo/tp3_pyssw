@@ -1,8 +1,16 @@
 <div class="col-md-12">
-  <div class="row" *ngIf="perdiste">
+  <div class="row" *ngIf=" perdiste && vidas == 0">
     <div class="col text-center">
 
       <h1> Perdiste!!! </h1>
+
+    </div>
+  </div>
+
+  <div class="row" *ngIf="ganaste">
+    <div class="col text-center">
+
+      <h1> Felicidades Ganaste!!! </h1>
 
     </div>
   </div>
@@ -12,15 +20,51 @@
     <img class="card-img-top" src={{palabra.urlImagen}} alt="Adivinar Palabra">
 
 
-    <div class="card-body justify-content-center horizontal" *ngIf="iniciar">
+    <div class="card-body justify-content-center horizontal" *ngIf="iniciar && vidas>0">
 
       <input class="form-control" *ngIf="palabra.palabraIngles[0] != null" type="text" maxlength="1" id="1"
-        [(ngModel)]="caracter1">
-      <div *ngIf="caracter1 != null">
-        <p>{{controlar()}}</p>
-      </div>
+        [(ngModel)]="caracter1" (change)='descontarvidas(caracter1,palabra.palabraIngles[0])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[1] != null" type="text" maxlength="1" id="2"
+        [(ngModel)]="caracter2" (change)='descontarvidas(caracter2,palabra.palabraIngles[1])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[2] != null" type="text" maxlength="1" id="3"
+        [(ngModel)]="caracter3" (change)='descontarvidas(caracter3,palabra.palabraIngles[2])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[3] != null" type="text" maxlength="1" id="4"
+        [(ngModel)]="caracter4" (change)='descontarvidas(caracter4,palabra.palabraIngles[3])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[4] != null" type="text" maxlength="1" id="5"
+        [(ngModel)]="caracter5" (change)='descontarvidas(caracter5,palabra.palabraIngles[4])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[5] != null" type="text" maxlength="1" id="6"
+        [(ngModel)]="caracter6" (change)='descontarvidas(caracter6,palabra.palabraIngles[5])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[6] != null" type="text" maxlength="1" id="7"
+        [(ngModel)]="caracter7" (change)='descontarvidas(caracter7,palabra.palabraIngles[6])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[7] != null" type="text" maxlength="1" id="8"
+        [(ngModel)]="caracter8" (change)='descontarvidas(caracter8,palabra.palabraIngles[7])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[8] != null" type="text" maxlength="1" id="9"
+        [(ngModel)]="caracter9" (change)='descontarvidas(caracter9,palabra.palabraIngles[8])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[9] != null" type="text" maxlength="1" id="10"
+        [(ngModel)]="caracter10" (change)='descontarvidas(caracter10,palabra.palabraIngles[9])'>
+
+      <input class="form-control" *ngIf="palabra.palabraIngles[10] != null" type="text" maxlength="1" id="11"
+        [(ngModel)]="caracter11" (change)='descontarvidas(caracter11,palabra.palabraIngles[10])'>
 
     </div>
+
+    <div class="card-body justify-content-center horizontal" *ngIf="perdiste && vidas == 0">
+
+      <h5>Palabra oculta: </h5>
+      <div *ngFor="let item of crossword; let i = index"> {{crossword[i]}}</div>
+
+
+    </div>
+
 
     <div class="card-body">
       <p class="card-text"> {{palabra.palabraEspanol}}</p>
