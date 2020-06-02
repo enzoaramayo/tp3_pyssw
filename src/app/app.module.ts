@@ -13,6 +13,8 @@ import { Punto3Component } from './components/punto3/punto3.component';
 import { AboutComponent } from './components/about/about.component';
 import { NgxPopper } from 'angular-popper';
 import { Punto4Component } from './components/punto4/punto4.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDataTableModule} from 'angular-9-datatable';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import { Punto4Component } from './components/punto4/punto4.component';
     AppRoutingModule,
     FormsModule,
     NgxPopper,
+    NgbModule,
+    NgxDataTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
