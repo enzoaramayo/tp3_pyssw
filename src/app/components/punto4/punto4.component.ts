@@ -105,7 +105,7 @@ export class Punto4Component implements OnInit {
   }
 
   descontarvidas(primera: string, segunda: string) {
-    if (primera != segunda) {
+    if (primera.toUpperCase() != segunda) {
       this.vidas--;
       console.log("menos vidas");
 
